@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Запись в студию</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  </head>
+  <body>
+    <main class="container">
+      <h1>Запись в студию</h1>
+      <p class="subtitle">Выберите дату и время, чтобы забронировать слот.</p>
+
+      <form id="booking-form" class="card">
+        <label for="month">Месяц</label>
+        <select id="month" name="month" required></select>
+
+        <label for="day">Число</label>
+        <select id="day" name="day" required></select>
+
+        <label for="time">Время</label>
+        <select id="time" name="time" required></select>
+
+        <button type="submit">Записаться</button>
+      </form>
+
+      <section id="result" class="result hidden" aria-live="polite"></section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
