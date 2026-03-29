@@ -3,30 +3,81 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Запись в студию</title>
+    <title>ZARUB</title>
     <link rel="stylesheet" href="styles.css" />
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
   </head>
   <body>
-    <main class="container">
-      <h1>Запись в студию</h1>
-      <p class="subtitle">Выберите дату и время, чтобы забронировать слот.</p>
+    <main class="app">
+      <header class="topbar">
+        <button class="brand-btn" type="button">ZARUB</button>
+        <p class="user-id">ID: 118217</p>
+        <div class="topbar-actions">
+          <button class="icon-btn" type="button" aria-label="Обновить">↻</button>
+          <button class="profile-btn" type="button">Профиль</button>
+        </div>
+      </header>
 
-      <form id="booking-form" class="card">
-        <label for="month">Месяц</label>
-        <select id="month" name="month" required></select>
+      <section class="wallet-grid" aria-label="Балансы">
+        <article class="wallet-card wallet-card--blue">
+          <h2>Баланс</h2>
+          <p class="amount">0,00 $</p>
+          <button id="topup-open" class="action-pill" type="button">⊕ Пополнить баланс</button>
+        </article>
 
-        <label for="day">Число</label>
-        <select id="day" name="day" required></select>
+        <article class="wallet-card wallet-card--purple">
+          <h2>Баланс карт</h2>
+          <p class="amount">0,89 $</p>
+          <button class="action-pill" type="button">▭ Выпустить карту</button>
+        </article>
+      </section>
 
-        <label for="time">Время</label>
-        <select id="time" name="time" required></select>
+      <section class="menu-row" aria-label="Меню">
+        <button class="menu-item" type="button">🎧 Техподдержка</button>
+        <button class="menu-item" type="button">👤 Партнёрка</button>
+        <button class="menu-item" type="button">🛎 Сервисы</button>
+      </section>
 
-        <button type="submit">Записаться</button>
-      </form>
+      <section class="cards-header">
+        <h3>Ваши карты</h3>
+        <span class="badge">1</span>
+      </section>
 
-      <section id="result" class="result hidden" aria-live="polite"></section>
+      <section class="search-row">
+        <input type="text" placeholder="Поиск по имени карты..." aria-label="Поиск по карте" />
+        <button class="icon-btn" type="button" aria-label="Фильтр">⌁</button>
+      </section>
+
+      <article class="user-card">
+        <div>
+          <p class="user-name">данек</p>
+          <p class="card-meta">Visa *2142</p>
+          <p class="amount">0,89 $</p>
+        </div>
+        <div class="card-actions">
+          <button type="button" class="small-btn small-btn--green">💸</button>
+          <button type="button" class="small-btn small-btn--purple">▭</button>
+          <button type="button" class="small-btn small-btn--blue">▱</button>
+          <button type="button" class="small-btn small-btn--dark">✕</button>
+        </div>
+      </article>
     </main>
+
+    <div id="topup-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="topup-title">
+      <div class="modal-box">
+        <button id="topup-close" class="modal-close" type="button" aria-label="Закрыть">✕</button>
+        <h4 id="topup-title">Пополнение баланса</h4>
+        <p class="modal-subtitle">Введите сумму, которую хотите зачислить.</p>
+
+        <form id="topup-form" class="modal-form">
+          <label for="topup-amount">Сумма ($)</label>
+          <input id="topup-amount" type="number" min="1" step="0.01" placeholder="Например, 25" required />
+          <button type="submit" class="confirm-btn">Продолжить</button>
+        </form>
+
+        <p id="topup-result" class="modal-result hidden" aria-live="polite"></p>
+      </div>
+    </div>
 
     <script src="app.js"></script>
   </body>

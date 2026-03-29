@@ -1,12 +1,10 @@
 :root {
-  color-scheme: light;
-  --bg: #f3f4f6;
-  --card: #ffffff;
-  --text: #111827;
-  --muted: #6b7280;
-  --accent: #2563eb;
-  --accent-hover: #1d4ed8;
-  --border: #d1d5db;
+  --bg: #03050d;
+  --text: #f4f5f8;
+  --muted: #8d95a8;
+  --blue: linear-gradient(140deg, #4589ff, #0b58eb);
+  --purple: linear-gradient(140deg, #b467ff, #8f00ff);
+  --panel: #121725;
 }
 
 * {
@@ -15,70 +13,309 @@
 
 body {
   margin: 0;
+  min-height: 100vh;
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
   background: var(--bg);
   color: var(--text);
 }
 
-.container {
-  max-width: 420px;
+.app {
+  max-width: 860px;
   margin: 0 auto;
-  padding: 24px 16px;
+  padding: 18px 16px 28px;
 }
 
-h1 {
-  margin: 0;
-  font-size: 1.5rem;
-}
-
-.subtitle {
-  margin: 8px 0 20px;
-  color: var(--muted);
-}
-
-.card {
+.topbar {
   display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.brand-btn,
+.profile-btn,
+.icon-btn,
+.action-pill,
+.menu-item,
+.small-btn,
+.confirm-btn {
+  border: 0;
+  cursor: pointer;
+  color: inherit;
+}
+
+.brand-btn {
+  background: #2d6dfa;
+  color: #f2f5ff;
+  font-weight: 800;
+  font-size: 2rem;
+  border-radius: 18px;
+  padding: 10px 22px;
+}
+
+.user-id {
+  text-align: center;
+  font-size: 2rem;
+  margin: 0;
+  color: #adb3c2;
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
   gap: 10px;
-  background: var(--card);
-  border: 1px solid var(--border);
+}
+
+.icon-btn {
+  background: transparent;
+  color: #dfe3ed;
+  font-size: 1.9rem;
+  padding: 8px;
+}
+
+.profile-btn {
+  background: #f2f3f7;
+  color: #222834;
+  font-size: 2rem;
+  font-weight: 700;
+  border-radius: 14px;
+  padding: 10px 20px;
+}
+
+.wallet-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.wallet-card {
+  border-radius: 18px;
+  padding: 20px;
+  min-height: 200px;
+}
+
+.wallet-card h2 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.amount {
+  margin: 12px 0;
+  font-size: 4rem;
+  font-weight: 800;
+}
+
+.wallet-card--blue {
+  background: var(--blue);
+}
+
+.wallet-card--purple {
+  background: var(--purple);
+}
+
+.action-pill {
+  width: 100%;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.16);
+  color: #f9fbff;
+  font-size: 2rem;
+  font-weight: 700;
+  padding: 14px;
+}
+
+.menu-row {
+  margin: 18px 0 8px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.menu-item {
+  background: transparent;
+  color: #98a3ba;
+  border-right: 1px solid #233;
+  padding: 14px;
+  text-align: left;
+  font-size: 1.6rem;
+}
+
+.menu-item:last-child {
+  border-right: 0;
+}
+
+.cards-header {
+  margin: 14px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.cards-header h3 {
+  margin: 0;
+  font-size: 3rem;
+}
+
+.badge {
+  background: #2b6dfa;
   border-radius: 12px;
+  min-width: 50px;
+  text-align: center;
+  padding: 4px 12px;
+  font-size: 2.8rem;
+  font-weight: 700;
+}
+
+.search-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+}
+
+.search-row input,
+.modal-form input {
+  border: 1px solid #1f2635;
+  background: #0f141f;
+  color: #f5f7fb;
+  border-radius: 14px;
+  font-size: 2rem;
+  padding: 14px 18px;
+}
+
+.user-card {
+  margin-top: 16px;
+  border-radius: 18px;
+  background: linear-gradient(110deg, #1c2333, #151d2c);
+  padding: 18px;
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: center;
+}
+
+.user-name {
+  margin: 0;
+  font-size: 2.2rem;
+  font-weight: 700;
+}
+
+.card-meta {
+  margin: 8px 0;
+  color: #9ca5b8;
+  font-size: 1.9rem;
+}
+
+.card-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.small-btn {
+  border-radius: 12px;
+  width: 62px;
+  height: 62px;
+  font-size: 1.8rem;
+}
+
+.small-btn--green { background: #07bf3a; }
+.small-btn--purple { background: #9e25eb; }
+.small-btn--blue { background: #2c73f7; }
+.small-btn--dark { background: #353840; }
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 16px;
 }
 
-label {
-  font-weight: 600;
+.modal-box {
+  width: min(460px, 100%);
+  background: #121829;
+  border: 1px solid #232c43;
+  border-radius: 20px;
+  padding: 18px;
+  position: relative;
 }
 
-select,
-button {
-  width: 100%;
-  border-radius: 10px;
-  border: 1px solid var(--border);
-  padding: 10px 12px;
-  font-size: 1rem;
-}
-
-button {
-  margin-top: 4px;
-  border: none;
-  background: var(--accent);
-  color: white;
-  font-weight: 700;
+.modal-close {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  border: 0;
+  background: transparent;
+  color: #d7dbea;
+  font-size: 1.3rem;
   cursor: pointer;
 }
 
-button:hover {
-  background: var(--accent-hover);
+.modal-box h4 {
+  margin: 0;
+  font-size: 1.6rem;
 }
 
-.result {
-  margin-top: 14px;
+.modal-subtitle {
+  margin: 8px 0 14px;
+  color: var(--muted);
+}
+
+.modal-form {
+  display: grid;
+  gap: 10px;
+}
+
+.modal-form label {
+  font-size: 0.95rem;
+  color: #c8cfe0;
+}
+
+.confirm-btn {
+  border-radius: 12px;
+  background: #2b6dfa;
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
   padding: 12px;
+}
+
+.modal-result {
+  margin-top: 10px;
   border-radius: 10px;
-  border: 1px solid #86efac;
-  background: #f0fdf4;
+  padding: 9px 11px;
+  background: #113321;
+  border: 1px solid #1f5b39;
+  color: #cbf8db;
 }
 
 .hidden {
   display: none;
+}
+
+@media (max-width: 760px) {
+  .topbar {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .topbar-actions {
+    justify-content: center;
+  }
+
+  .wallet-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .amount {
+    font-size: 3.2rem;
+  }
+
+  .menu-item,
+  .action-pill,
+  .search-row input {
+    font-size: 1.4rem;
+  }
 }
