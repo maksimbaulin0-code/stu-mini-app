@@ -1,9 +1,8 @@
 const tg = window.Telegram?.WebApp;
 
-const mainScreen = document.getElementById('main-screen');
-const topupScreen = document.getElementById('topup-screen');
+const modal = document.getElementById('topup-modal');
 const openTopup = document.getElementById('topup-open');
-const backButton = document.getElementById('topup-back');
+const closeTopup = document.getElementById('topup-close');
 const topupForm = document.getElementById('topup-form');
 const topupAmountInput = document.getElementById('topup-amount');
 const topupResult = document.getElementById('topup-result');
@@ -13,23 +12,27 @@ if (tg) {
   tg.expand();
 }
 
-function openTopupScreen() {
-  mainScreen.classList.add('hidden');
-  topupScreen.classList.remove('hidden');
+function showModal() {
+  modal.classList.remove('hidden');
   topupAmountInput.focus();
 }
 
-function openMainScreen() {
-  topupScreen.classList.add('hidden');
-  mainScreen.classList.remove('hidden');
+function hideModal() {
+  modal.classList.add('hidden');
 }
 
-openTopup.addEventListener('click', openTopupScreen);
-backButton.addEventListener('click', openMainScreen);
+openTopup.addEventListener('click', showModal);
+closeTopup.addEventListener('click', hideModal);
+
+modal.addEventListener('click', (event) => {
+  if (event.target === modal) {
+    hideModal();
+  }
+});
 
 document.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape' && !topupScreen.classList.contains('hidden')) {
-    openMainScreen();
+  if (event.key === 'Escape' && !modal.classList.contains('hidden')) {
+    hideModal();
   }
 });
 
@@ -49,7 +52,7 @@ topupForm.addEventListener('submit', (event) => {
     currency: 'USD'
   };
 
-  topupResult.textContent = `Пополнение создано: ${payload.amount} $`;
+  topupResult.textContent = `Окно пополнения открыто: ${payload.amount} $`;
   topupResult.classList.remove('hidden');
 
   if (tg) {
